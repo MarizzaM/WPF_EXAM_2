@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace WPF_EXAM_2
 {
-
     class MainWIndowViewModel
     {
         public int Number1 { get; set; }

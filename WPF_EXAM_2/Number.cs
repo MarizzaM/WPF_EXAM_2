@@ -10,7 +10,6 @@ namespace WPF_EXAM_2
     public class Number : INotifyPropertyChanged
     {
         private int m_number;
-        private int m_number2;
 
         public int NumberValue
         {
@@ -22,19 +21,6 @@ namespace WPF_EXAM_2
             {
                 this.m_number = value;
                 OnPropertyChanged("NumberValue");
-            }
-        }
-
-        public int Number2
-        {
-            get
-            {
-                return m_number2;
-            }
-            set
-            {
-                this.m_number2 = value;
-                OnPropertyChanged("Number2");
             }
         }
 

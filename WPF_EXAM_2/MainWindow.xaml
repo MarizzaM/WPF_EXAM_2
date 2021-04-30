@@ -17,5 +17,6 @@
             Grid.Row="0"/>
         <local:UserControlCalc
             Grid.Row="1"/>
+        
     </Grid>
 </Window>

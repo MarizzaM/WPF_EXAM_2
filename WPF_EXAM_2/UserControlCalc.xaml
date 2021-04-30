@@ -37,11 +37,8 @@
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="300 10" VerticalAlignment="Center" >
             <TextBlock FontSize="30" Text="Time left: "/>
             <TextBlock x:Name="txtTimer"  Text="" FontSize="30" >
-               
             </TextBlock>
         </StackPanel>
-
-
 
     </Grid>
 </UserControl>

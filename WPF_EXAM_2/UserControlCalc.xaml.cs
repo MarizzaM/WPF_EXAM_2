@@ -31,11 +31,15 @@ namespace WPF_EXAM_2
         {
             InitializeComponent();
             this.DataContext = viewModel;
-            timer.Tick += timer_Tick;
+            StartGame();
+        }
+
+        void StartGame() {
+            timer.Tick += TimerTick;
             timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Start();
         }
-        void timer_Tick(object sender, EventArgs e)
+        void TimerTick(object sender, EventArgs e)
 
         {
             if (i > 0 && i > 15)
@@ -60,7 +64,6 @@ namespace WPF_EXAM_2
                 btn3.IsEnabled = false;
                 btn4.IsEnabled = false;
             }
-                
         }
 
         private void btn1_Click(object sender, RoutedEventArgs e)
