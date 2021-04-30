@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WPF_EXAM_2
 {
@@ -23,38 +24,75 @@ namespace WPF_EXAM_2
     public partial class UserControlCalc : UserControl
     {
         private MainWIndowViewModel viewModel = new MainWIndowViewModel();
+        int i = 30;
+        DispatcherTimer timer = new DispatcherTimer();
+
         public UserControlCalc()
         {
             InitializeComponent();
             this.DataContext = viewModel;
-
-            int i = 30;
-            bool flag = true;
-
-            Task.Run(() =>
-            {
-                for (i = 30; i >= 0; i--)
-                {
-                    Action uiwork = () => {
-                        viewModel.MyTimer.TimerValue = i;
-                    };
-                    SafeInvoke(uiwork);
-                    Thread.Sleep(1000);
-                }
-            });
-
-            if (i == 0) {
-                btn1.IsEnabled = false;
-            }
+            timer.Tick += timer_Tick;
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Start();
         }
-        private void SafeInvoke(Action work)
+        void timer_Tick(object sender, EventArgs e)
+
         {
-            if (Dispatcher.CheckAccess())
+            if (i > 0 && i > 15)
             {
-                work.Invoke();
-                return;
+                txtTimer.Text = i.ToString();
+                i--;
             }
-            this.Dispatcher.BeginInvoke(work);
+            else if (i > 0)
+            {
+                txtTimer.Text = i.ToString();
+                txtTask1.Foreground = Brushes.Red;
+                txtTask2.Foreground = Brushes.Red;
+                txtTask3.Foreground = Brushes.Red;
+                txtTask4.Foreground = Brushes.Red;
+                i--;
+            }
+            else {
+                txtTimer.Text = "0";
+                myUserControl.Background = Brushes.Red;
+                btn1.IsEnabled = false;
+                btn2.IsEnabled = false;
+                btn3.IsEnabled = false;
+                btn4.IsEnabled = false;
+            }
+                
+        }
+
+        private void btn1_Click(object sender, RoutedEventArgs e)
+        {
+            CheckTheResult(viewModel.Btn1.NumberValue);
+        }
+
+        private void btn3_Click(object sender, RoutedEventArgs e)
+        {
+            CheckTheResult(viewModel.Btn3.NumberValue);
+        }
+
+        private void btn4_Click(object sender, RoutedEventArgs e)
+        {
+            CheckTheResult(viewModel.Btn4.NumberValue);
+        }
+
+        private void btn2_Click(object sender, RoutedEventArgs e)
+        {
+            CheckTheResult(viewModel.Btn2.NumberValue);
+        }
+
+        public void CheckTheResult(int result) {
+            timer.Stop();
+            btn1.IsEnabled = false;
+            btn2.IsEnabled = false;
+            btn3.IsEnabled = false;
+            btn4.IsEnabled = false;
+            if (viewModel.MyNumber1.NumberValue * viewModel.MyNumber2.NumberValue == result)
+                myUserControl.Background = Brushes.LightGreen;
+            else
+                myUserControl.Background = Brushes.Red;
         }
     }
 }

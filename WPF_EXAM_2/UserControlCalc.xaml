@@ -5,16 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_EXAM_2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style TargetType="Button" x:Key="BtnForUC">
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-    </UserControl.Resources>
+             d:DesignHeight="450" d:DesignWidth="800" Name="myUserControl">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,27 +16,29 @@
         </Grid.RowDefinitions>
 
         
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="300 10" VerticalAlignment="Center">
-            <Label FontSize="30" Content="18 "/>
-            <Label FontSize="30" Content="*"/>
-            <Label FontSize="30" Content="12"/>
-            <Label FontSize="30" Content=" = ?"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="300 10" VerticalAlignment="Center" >
+            <TextBlock FontSize="30" Text="{Binding MyNumber1.NumberValue}" Name="txtTask1" />
+            <TextBlock FontSize="30" Text="*" Name="txtTask2"/>
+            <TextBlock FontSize="30" Text="{Binding MyNumber2.NumberValue}" Name="txtTask3"/>
+            <TextBlock FontSize="30" Text=" = ?" Name="txtTask4"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="200 10">
-            <Button FontSize="30" Content="360" Name="btn1" Width="100"  Height="100" Margin="0, 0, 170, 0" 
-                    VerticalAlignment="Center" HorizontalAlignment="Center "/>
-            <Button FontSize="30" Content="216" Name="btn2" Width="100" Height="100"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button FontSize="30" Content="{Binding Btn1.NumberValue}" Name="btn1" Width="100"  Height="100" Margin="0, 0, 170, 0" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center " Click="btn1_Click"/>
+            <Button FontSize="30" Content="{Binding Btn2.NumberValue}" Name="btn2" Width="100" Height="100"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn2_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="200 10">
-            <Button FontSize="30" Content="416" Name="btn3" Width="100" Height="100" Margin="0, 0, 170, 0"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Button FontSize="30" Content="166" Name="btn4" Width="100" Height="100"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button FontSize="30" Content="{Binding Btn3.NumberValue}" Name="btn3" Width="100" Height="100" Margin="0, 0, 170, 0"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn3_Click"/>
+            <Button FontSize="30" Content="{Binding Btn4.NumberValue}" Name="btn4" Width="100" Height="100"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn4_Click"/>
         </StackPanel>
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="300 10" VerticalAlignment="Center">
-            <Label FontSize="30" Content="Time left: "/>
-            <Label FontSize="30" Content="{Binding MyTimer.TimerValue}"/>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="300 10" VerticalAlignment="Center" >
+            <TextBlock FontSize="30" Text="Time left: "/>
+            <TextBlock x:Name="txtTimer"  Text="" FontSize="30" >
+               
+            </TextBlock>
         </StackPanel>
 
 

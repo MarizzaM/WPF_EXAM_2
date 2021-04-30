@@ -7,20 +7,34 @@ using System.Threading.Tasks;
 
 namespace WPF_EXAM_2
 {
-    public class Timer : INotifyPropertyChanged
+    public class Number : INotifyPropertyChanged
     {
-        private int m_timer;
+        private int m_number;
+        private int m_number2;
 
-        public int TimerValue
+        public int NumberValue
         {
             get
             {
-                return m_timer;
+                return m_number;
             }
             set
             {
-                this.m_timer = value;
-                OnPropertyChanged("TimerValue");
+                this.m_number = value;
+                OnPropertyChanged("NumberValue");
+            }
+        }
+
+        public int Number2
+        {
+            get
+            {
+                return m_number2;
+            }
+            set
+            {
+                this.m_number2 = value;
+                OnPropertyChanged("Number2");
             }
         }
 
